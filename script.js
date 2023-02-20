@@ -36,6 +36,10 @@ inputForm.addEventListener("keyup", () => {
   renderProduct(searchProduct);
 });
 
+const format = (price) => {
+  return price.toLocaleString('us-US', {style: 'currency', currency: 'USD'})
+}
+
 const renderProduct = (products) => {
   let content = "";
   products.length < 1
@@ -47,7 +51,7 @@ const renderProduct = (products) => {
                         <img style="cursor: pointer" loading="lazy" src="${image}" class="img card-img-top ${id}" width="200" height="300" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <div class="card-body">
                             <h5 class="card-title fs-6">${title}</h5>
-                            <h5 class="card-title">$${price}</h5>
+                            <h5 class="card-title">${format(price)}</h5>
                             <a href="#" class="btn btn-primary">Order Now</a>
                           </div>
                       </div>
@@ -72,7 +76,7 @@ const renderProductDetail = (product) => {
                         <li class="list-group-item">Category:
                         ${category}</li>
                         <li class="list-group-item">Price:<h5>
-                        $.${price}</h5></li>
+                        ${format(price)}</h5></li>
                         <li class="list-group-item">Description:<p>
                         ${description}</p></li>
                       </ul>
